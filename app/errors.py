@@ -4,3 +4,6 @@ class ValidationError(Exception):
 
 class NotFoundError(Exception):
     pass
+
+
+__all__ = ("ValidationError", "NotFoundError")
