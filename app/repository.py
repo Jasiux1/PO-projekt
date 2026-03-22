@@ -7,7 +7,8 @@ class UserRepository:
         self._next_id: int = 1
 
     def list_users(self) -> list[dict]:
-        return [deepcopy(user) for user in self._users.values()]
+        users = sorted(self._users.values(), key=lambda user: user["id"])
+        return [deepcopy(user) for user in users]
 
     def get_user(self, user_id: int) -> dict | None:
         user = self._users.get(user_id)
