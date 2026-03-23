@@ -8,28 +8,28 @@ def create_users_blueprint(service: UserService) -> Blueprint:
     users_bp = Blueprint("users", __name__)
 
     @users_bp.get("/users")
-    def get_users():
+    def get_users() -> tuple:
         return jsonify(service.list_users()), 200
 
     @users_bp.get("/users/<int:user_id>")
-    def get_user(user_id: int):
+    def get_user(user_id: int) -> tuple:
         user = service.get_user(user_id)
         return jsonify(user), 200
 
     @users_bp.post("/users")
-    def create_user():
+    def create_user() -> tuple:
         payload = request.get_json(silent=True)
         user = service.create_user(payload)
         return jsonify(user), 200
 
     @users_bp.patch("/users/<int:user_id>")
-    def update_user(user_id: int):
+    def update_user(user_id: int) -> tuple:
         payload = request.get_json(silent=True)
         user = service.update_user(user_id, payload)
         return jsonify(user), 200
 
     @users_bp.delete("/users/<int:user_id>")
-    def delete_user(user_id: int):
+    def delete_user(user_id: int) -> tuple:
         user = service.delete_user(user_id)
         return jsonify(user), 200
 
