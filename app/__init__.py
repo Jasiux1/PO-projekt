@@ -13,7 +13,7 @@ def create_app() -> Flask:
     app.register_blueprint(create_users_blueprint(service))
 
     @app.get("/health")
-    def health():
+    def health() -> tuple:
         return jsonify({"status": "ok"}), 200
 
     return app
