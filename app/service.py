@@ -54,8 +54,8 @@ class UserService:
         if type(payload) is not dict:
             raise ValidationError("payload must be a JSON object")
 
-        required = {"firstName", "lastName", "birthYear", "group"}
-        if set(payload.keys()) != required:
+        required_keys = {"firstName", "lastName", "birthYear", "group"}
+        if set(payload.keys()) != required_keys:
             raise ValidationError("payload must contain exactly: firstName, lastName, birthYear, group")
 
         return {
