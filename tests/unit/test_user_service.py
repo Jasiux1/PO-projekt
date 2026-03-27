@@ -23,6 +23,7 @@ def test_create_and_get_user(service: UserService):
     )
 
     assert created["id"] == 1
+    assert isinstance(created["id"], int)
     assert created["firstName"] == "Jan"
     assert created["lastName"] == "Kowalski"
     assert created["age"] == date.today().year - 2000
