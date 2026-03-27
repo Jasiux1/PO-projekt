@@ -118,3 +118,8 @@ def test_delete_user_removes_it(service: UserService):
 def test_get_missing_user_raises_not_found(service: UserService):
     with pytest.raises(NotFoundError):
         service.get_user(999)
+
+
+def test_get_user_zero_id_raises_validation_error(service: UserService):
+    with pytest.raises(ValidationError):
+        service.get_user(0)
