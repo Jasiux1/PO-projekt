@@ -114,6 +114,22 @@ def test_patch_empty_payload_returns_400(client):
     assert response.status_code == 400
 
 
+def test_patch_unsupported_field_returns_400(client):
+    client.post(
+        "/users",
+        json={
+            "firstName": "Jan",
+            "lastName": "Nowak",
+            "birthYear": 1995,
+            "group": "user",
+        },
+    )
+
+    response = client.patch("/users/1", json={"email": "jan@example.com"})
+
+    assert response.status_code == 400
+
+
 def test_invalid_json_returns_400(client):
     response = client.post(
         "/users",
