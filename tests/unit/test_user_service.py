@@ -69,6 +69,19 @@ def test_create_user_invalid_group_raises_validation_error(service: UserService)
         )
 
 
+def test_create_user_with_extra_field_raises_validation_error(service: UserService):
+    with pytest.raises(ValidationError):
+        service.create_user(
+            {
+                "firstName": "Jan",
+                "lastName": "Kowalski",
+                "birthYear": 2000,
+                "group": "user",
+                "email": "jan@example.com",
+            }
+        )
+
+
 def test_update_user_partial_data(service: UserService):
     service.create_user(
         {
