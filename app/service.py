@@ -13,6 +13,7 @@ class UserService:
 
     def list_users(self) -> list[dict]:
         users = self._repository.list_users()
+        users = sorted(users, key=lambda user: user["id"])
         return [self._to_response(user) for user in users]
 
     def get_user(self, user_id: int) -> dict:
