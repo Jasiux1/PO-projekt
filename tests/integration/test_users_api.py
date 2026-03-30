@@ -98,6 +98,22 @@ def test_patch_not_found_returns_404(client):
     assert response.status_code == 404
 
 
+def test_patch_empty_payload_returns_400(client):
+    client.post(
+        "/users",
+        json={
+            "firstName": "Jan",
+            "lastName": "Nowak",
+            "birthYear": 1995,
+            "group": "user",
+        },
+    )
+
+    response = client.patch("/users/1", json={})
+
+    assert response.status_code == 400
+
+
 def test_invalid_json_returns_400(client):
     response = client.post(
         "/users",
