@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 
 from app.repository import UserRepository
 from app.routes import create_users_blueprint
@@ -11,9 +11,5 @@ def create_app() -> Flask:
     repository = UserRepository()
     service = UserService(repository)
     app.register_blueprint(create_users_blueprint(service))
-
-    @app.get("/health")
-    def health() -> tuple:
-        return jsonify({"status": "ok"}), 200
 
     return app
